@@ -1,0 +1,5 @@
+@media (max-width: 576px) {
+  .result-items .result-item {
+    width: 107px;
+  }
+}

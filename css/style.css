@@ -1,16 +1,5 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: "Roboto", sans-serif;
-}
-
-.container {
-  max-width: 23.125rem;
-  padding-bottom: 0.813rem;
 }
 
 .search-title {
@@ -19,14 +8,13 @@ body {
 }
 
 .search-input {
-  font-size: 0.938rem;
+  font-size: 0.93rem;
   border: 2px solid #000000;
 }
 
 .results-title {
   letter-spacing: 0.04em;
   font-weight: 900;
-  font-size: 13px;
 }
 
 .result-items {
@@ -35,12 +23,5 @@ body {
 
 .result-item {
   margin: 0 11px 11px 0;
-}
-
-.btn-see-more {
-  font-size: 0.813rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  border: 2px solid #000000;
-  border-radius: 6px;
+  width: 250px;
 }

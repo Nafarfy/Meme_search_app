@@ -11,73 +11,85 @@
       crossorigin="anonymous"
     />
     <link href="https://fonts.googleapis.com/css?family=Comfortaa:regular" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,900" rel="stylesheet" />
+    <link rel="stylesheet" href="css/mobile.css" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <script src="js/main.js" defer></script>
+    <script src="js/appLibrary.js" defer></script>
+    <script src="js/app.js" defer></script>
+
     <title>Meme Search</title>
   </head>
   <body>
-    <div class="container">
-      <div class="card mt-5 border-0">
-        <div class="search-items">
-          <h3 class="search-title">Search</h3>
-          <input
-            type="text"
-            class="search-input form-control mt-4 p-3"
-            placeholder="Type for the Meme..."
-          />
+    <div class="header py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-sm-5">
+            <div class="search-items">
+              <h3 class="search-title">Search</h3>
+              <input
+                type="text"
+                class="search-input form-control mt-4 p-3"
+                placeholder="Type for the Meme..."
+              />
+            </div>
+          </div>
         </div>
-        <div class="results mt-4">
+      </div>
+    </div>
+    <div class="main pb-5">
+      <div class="container">
+        <div class="col mt-5">
           <span class="results-title text-uppercase">All results</span>
           <div class="result-items d-flex flex-wrap justify-content-center">
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
             <div class="result-item">
-              <img src="img/dog.jpg" alt="dog" />
+              <img class="w-100" src="img/dog.jpg" alt="dog" />
             </div>
           </div>
-          <button class="btn btn-see-more w-100 py-3 text-uppercase">See More</button>
+          <button class="btn btn-outline-secondary py-3 px-5 mx-auto d-block text-uppercase">
+            See More
+          </button>
         </div>
       </div>
     </div>
