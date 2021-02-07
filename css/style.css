@@ -1,0 +1,27 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.search-title {
+  font-family: "Comfortaa", sans-serif;
+  font-size: 2.25rem;
+}
+
+.search-input {
+  font-size: 0.93rem;
+  border: 2px solid #000000;
+}
+
+.results-title {
+  letter-spacing: 0.04em;
+  font-weight: 900;
+}
+
+.result-items {
+  margin: 1.5rem -11px 0 0;
+}
+
+.result-item {
+  margin: 0 11px 11px 0;
+  width: 250px;
+}
