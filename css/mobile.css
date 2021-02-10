@@ -1,5 +1,10 @@
 @media (max-width: 576px) {
   .result-items .result-item {
-    width: 107px;
+    width: 49%;
+    height: 145px;
+  }
+
+  .pop-up .original-img {
+    width: 100%;
   }
 }
