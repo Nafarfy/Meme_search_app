@@ -20,19 +20,23 @@ const searchGifs = ((apiKey) => {
 
     return search(searchTerm, offset, limit).then((newGifs) => {
       gifs[searchTerm] = [...(gifs[searchTerm] || []), ...newGifs];
+      console.log(gifs[searchTerm]);
       return gifs[searchTerm];
     });
+  };
+
+  const setGifs = (value) => {
+    gifs = value;
   };
 
   const getGifs = () => {
     return gifs;
   };
 
-  const clean = () => {};
-
   return {
     search,
     getGifs,
     loadMore,
+    setGifs,
   };
 })("Y0dPZrMIehQQDgvU4snePAVxdANpSGZD");
