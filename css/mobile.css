@@ -1,3 +1,10 @@
+@media (max-width: 992px) {
+  .result-items .result-item {
+    width: 33%;
+    height: 200px;
+  }
+}
+
 @media (max-width: 576px) {
   .result-items .result-item {
     width: 49%;

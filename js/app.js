@@ -1,7 +1,6 @@
 const app = (function () {
   const searchInput = document.querySelector(".search-input");
-  const resultItems = document.querySelector(".result-items");
-  const resTitle = document.querySelector(".results-title");
+  const gifsList = document.querySelector(".gifs-list");
   const btnSeeMore = document.querySelector(".btn-see-more");
   const spinner = document.querySelector(".spinner-border");
 
@@ -9,58 +8,15 @@ const app = (function () {
   const originalImg = document.querySelector(".original-img");
   const popUpClose = document.querySelector(".btn-danger");
 
-  const apiKey = "Y0dPZrMIehQQDgvU4snePAVxdANpSGZD";
-
-  let arr;
-  let offset = 0;
-
-  const searchGifs = (offset) => {
-    const query = searchInput.value;
-    let url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=16&offset=${offset}&q=${query}`;
-    arr = [];
-
-    if (query === "") {
-      url = `https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=16&offset=${offset}`;
-      resTitle.innerHTML = "Trending";
-    }
-
-    fetch(url)
-      .then((response) => {
-        spinner.classList.remove("d-none");
-        return response.json();
-      })
-      .then((content) => {
-        content.data.forEach((gif) => {
-          arr = [
-            ...arr,
-            {
-              url: gif.images.downsized.url,
-              title: gif.title,
-              original: gif.images.original.url,
-            },
-          ];
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
-  const renderGifs = () => {
+  const renderGifs = (gifs) => {
     const nodes = document.createDocumentFragment();
 
-    setTimeout(() => {
-      if (!arr.length) {
-        resTitle.innerHTML = "No Results Found";
-        return;
-      } else {
-        arr.map((gif) => {
-          nodes.append(createNode(gif.url, gif.title, gif.original));
-          spinner.classList.add("d-none");
-        });
-        resultItems.append(nodes);
-      }
-    }, 1000);
+    gifs.forEach((gif) => {
+      nodes.append(createNode(gif.images.downsized.url, gif.title, gif.images.original.url));
+    });
+
+    gifsList.innerHTML = "";
+    gifsList.append(nodes);
   };
 
   const createNode = (gif, title, original) => {
@@ -89,25 +45,28 @@ const app = (function () {
   });
 
   btnSeeMore.addEventListener("click", () => {
-    offset += 16;
-    searchGifs(offset);
-    renderGifs();
+    searchGifs.loadMore(searchInput.value, 15).then((gifs) => {
+      renderGifs(gifs);
+    });
   });
 
   searchInput.addEventListener(
     "keyup",
     _.debounce(() => {
-      offset = 0;
-      resultItems.innerHTML = "";
-      resTitle.innerHTML = "All Results";
-      searchGifs(offset);
-      renderGifs();
+      spinner.classList.remove("d-none");
+      searchGifs.loadMore(searchInput.value, 15).then((gifs) => {
+        setTimeout(() => {
+          spinner.classList.add("d-none");
+          renderGifs(gifs);
+        }, 1000);
+      });
     }, 700)
   );
 
   const init = () => {
-    searchGifs();
-    renderGifs();
+    searchGifs.loadMore(searchInput.value, 15).then((gifs) => {
+      renderGifs(gifs);
+    });
   };
 
   return {
