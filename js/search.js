@@ -30,7 +30,6 @@ const searchGifs = ((apiKey) => {
 
     return search(searchTerm, offset, limit).then((newGifs) => {
       gifs[searchTerm] = [...(gifs[searchTerm] || []), ...newGifs];
-      console.log(gifs);
       return gifs[searchTerm];
     });
 
