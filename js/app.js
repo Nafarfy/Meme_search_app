@@ -2,31 +2,29 @@ const app = (function () {
   const searchInput = document.querySelector(".search-input");
   const gifsList = document.querySelector(".gifs-list");
   const btnSeeMore = document.querySelector(".btn-see-more");
-  const spinner = document.querySelector(".spinner-border");
 
-  const popUpImg = document.querySelector(".pop-up");
-  const originalImg = document.querySelector(".original-img");
+  const popupImg = document.querySelector(".popup-img");
   const popUpClose = document.querySelector(".btn-danger");
 
   const renderGifs = (gifs) => {
     const nodes = document.createDocumentFragment();
 
     gifs.forEach((gif) => {
-      nodes.append(createNode(gif.images.downsized.url, gif.title, gif.images.original.url));
+      nodes.append(createNode(gif.images.downsized.url, gif.title));
     });
 
     gifsList.innerHTML = "";
     gifsList.append(nodes);
   };
 
-  const createNode = (gif, title, original) => {
+  const createNode = (gif, title) => {
     const node = getTemplate(gif, title);
 
-    node.querySelector(".result-item").addEventListener("click", () => {
-      originalImg.src = original;
-      popUpImg.classList.remove("d-none");
-      document.querySelector("body").classList.add("overflow-hidden");
-    });
+    // node.querySelector(".result-item").addEventListener("click", () => {
+    //   popupImg.src = original;
+    //   popup.classList.remove("d-none");
+    //   document.querySelector("body").classList.add("overflow-hidden");
+    // });
 
     return node;
   };
@@ -34,31 +32,61 @@ const app = (function () {
   const getTemplate = (gif, title) => {
     return document.createRange().createContextualFragment(`
     <div class="result-item">
-      <img class="w-100 h-100" src="${gif}" alt="${title}" />
+      <img class="result-gif w-100 h-100" src="${gif}" alt="${title}" />
     </div>
     `);
   };
 
+  const timeControl = (start, end, func) => {
+    if (end - start <= 500) {
+      setTimeout(() => {
+        func();
+      }, 500);
+    } else {
+      func();
+    }
+  };
+
+  gifsList.addEventListener("click", (e) => {
+    if (e.target.classList.contains("result-gif")) {
+      popupImg.src = e.target.src;
+      DOMOperations.showPopup();
+    }
+  });
+
   popUpClose.addEventListener("click", () => {
-    popUpImg.classList.add("d-none");
-    document.querySelector("body").classList.remove("overflow-hidden");
+    DOMOperations.hidePopup();
   });
 
   btnSeeMore.addEventListener("click", () => {
+    const start = new Date().getTime();
+    DOMOperations.showSpinner();
+    btnSeeMore.classList.add("d-none");
+
     searchGifs.loadMore(searchInput.value, 15).then((gifs) => {
-      renderGifs(gifs);
+      const end = new Date().getTime();
+
+      timeControl(start, end, () => {
+        DOMOperations.hideSpinner();
+        btnSeeMore.classList.remove("d-none");
+        renderGifs(gifs);
+      });
     });
   });
 
   searchInput.addEventListener(
     "keyup",
     _.debounce(() => {
-      spinner.classList.remove("d-none");
+      const start = new Date().getTime();
+      DOMOperations.showSpinner();
+
       searchGifs.loadMore(searchInput.value, 15).then((gifs) => {
-        setTimeout(() => {
-          spinner.classList.add("d-none");
+        const end = new Date().getTime();
+
+        timeControl(start, end, () => {
+          DOMOperations.hideSpinner();
           renderGifs(gifs);
-        }, 1000);
+        });
       });
     }, 700)
   );
