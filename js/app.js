@@ -20,12 +20,6 @@ const app = (function () {
   const createNode = (gif, title) => {
     const node = getTemplate(gif, title);
 
-    // node.querySelector(".result-item").addEventListener("click", () => {
-    //   popupImg.src = original;
-    //   popup.classList.remove("d-none");
-    //   document.querySelector("body").classList.add("overflow-hidden");
-    // });
-
     return node;
   };
 
@@ -37,11 +31,11 @@ const app = (function () {
     `);
   };
 
-  const timeControl = (start, end, func) => {
-    if (end - start <= 500) {
+  const timeControl = (start, end, executedTime, func) => {
+    if (end - start <= executedTime) {
       setTimeout(() => {
         func();
-      }, 500);
+      }, executedTime - (end - start));
     } else {
       func();
     }
@@ -66,7 +60,7 @@ const app = (function () {
     searchGifs.loadMore(searchInput.value, 15).then((gifs) => {
       const end = new Date().getTime();
 
-      timeControl(start, end, () => {
+      timeControl(start, end, 500, () => {
         DOMOperations.hideSpinner();
         btnSeeMore.classList.remove("d-none");
         renderGifs(gifs);
@@ -83,7 +77,7 @@ const app = (function () {
       searchGifs.loadMore(searchInput.value, 15).then((gifs) => {
         const end = new Date().getTime();
 
-        timeControl(start, end, () => {
+        timeControl(start, end, 500, () => {
           DOMOperations.hideSpinner();
           renderGifs(gifs);
         });

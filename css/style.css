@@ -64,7 +64,7 @@ body {
 
 .result-item {
   margin-bottom: 11px;
-  width: 24.5%;
+  width: 250px;
   height: 250px;
   cursor: pointer;
 }

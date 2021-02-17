@@ -1,7 +1,9 @@
+const apikey = "Y0dPZrMIehQQDgvU4snePAVxdANpSGZD";
+
 const searchGifs = ((apiKey) => {
   let gifs = {};
 
-  const URLBuilder = (searchTerm, offset, limit) => {
+  const urlBuilder = (searchTerm, offset, limit) => {
     const params = new URLSearchParams({
       api_key: apiKey,
       limit: limit || 15,
@@ -11,13 +13,12 @@ const searchGifs = ((apiKey) => {
 
     if (searchTerm === "") {
       return `https://api.giphy.com/v1/gifs/trending?${params.toString()}`;
-    } else {
-      return `https://api.giphy.com/v1/gifs/search?${params.toString()}`;
     }
+    return `https://api.giphy.com/v1/gifs/search?${params.toString()}`;
   };
 
   const search = (searchTerm, offset, limit) => {
-    return fetch(URLBuilder(searchTerm, offset, limit))
+    return fetch(urlBuilder(searchTerm, offset, limit))
       .then((response) => response.json())
       .then((content) => content.data)
       .catch((err) => {
@@ -28,17 +29,17 @@ const searchGifs = ((apiKey) => {
   const loadMore = (searchTerm, limit) => {
     const offset = gifs.hasOwnProperty(searchTerm) ? gifs[searchTerm].length : 0;
 
-    return search(searchTerm, offset, limit).then((newGifs) => {
-      gifs[searchTerm] = [...(gifs[searchTerm] || []), ...newGifs];
-      return gifs[searchTerm];
-    });
-
-    // // Option with data mutation
-
     // return search(searchTerm, offset, limit).then((newGifs) => {
-    //   gifs[searchTerm] = newGifs;
+    //   gifs[searchTerm] = [...(gifs[searchTerm] || []), ...newGifs];
     //   return gifs[searchTerm];
     // });
+
+    // // Option with data mutation
+    return search(searchTerm, offset, limit).then((newGifs) => {
+      gifs[searchTerm] = newGifs;
+
+      return gifs[searchTerm];
+    });
   };
 
   const setGifs = (value) => {
@@ -55,4 +56,4 @@ const searchGifs = ((apiKey) => {
     loadMore,
     setGifs,
   };
-})("Y0dPZrMIehQQDgvU4snePAVxdANpSGZD");
+})(apikey);

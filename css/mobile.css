@@ -1,14 +1,21 @@
+@media (max-width: 1200px) {
+  .gifs-list .result-item {
+    width: 225px;
+    height: 225px;
+  }
+}
+
 @media (max-width: 992px) {
   .gifs-list .result-item {
-    width: 33%;
-    height: 200px;
+    width: 225px;
+    height: 225px;
   }
 }
 
 @media (max-width: 576px) {
   .gifs-list .result-item {
-    width: 49%;
-    height: 145px;
+    width: 100%;
+    height: 250px;
   }
 
   .popup .popup-img {
