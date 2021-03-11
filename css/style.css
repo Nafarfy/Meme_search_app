@@ -1,6 +1,20 @@
 body {
   font-family: "Roboto", sans-serif;
 }
+/* 
+.spinner-border {
+  position: fixed;
+
+  padding: 5rem;
+  color: #8873ff;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  margin: auto;
+} */
 
 .search-title {
   font-family: "Comfortaa", sans-serif;
@@ -8,7 +22,7 @@ body {
 }
 
 .search-input {
-  font-size: 0.93rem;
+  font-size: 1rem;
   border: 2px solid #000000;
 }
 
@@ -17,11 +31,15 @@ body {
   font-weight: 900;
 }
 
-.result-items {
-  margin: 1.5rem -11px 0 0;
+.col,
+.search-title,
+.results-title {
+  margin-bottom: 2rem;
 }
 
 .result-item {
-  margin: 0 11px 11px 0;
+  margin-bottom: 11px;
   width: 250px;
+  height: 250px;
+  cursor: pointer;
 }

@@ -1,5 +1,20 @@
+@media (max-width: 1200px) {
+  .gifs-list .result-item {
+    width: 225px;
+    height: 225px;
+  }
+}
+
+@media (max-width: 992px) {
+  .gifs-list .result-item {
+    width: 225px;
+    height: 225px;
+  }
+}
+
 @media (max-width: 576px) {
-  .result-items .result-item {
-    width: 107px;
+  .gifs-list .result-item {
+    width: 100%;
+    height: 250px;
   }
 }
